@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Website project: create a Valentine’s gift website for the user’s wife.",
+  "architectural_notes": [],
+  "known_issues": [
+    "Uploaded user photos are not displaying on the website after upload (gallery not rendering user-provided images)."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-valentine-s-gift-website-that-the-user-can-share-as-a-present-for-their-wife-with-english-user-facing-copy-and-a-romantic-heartfelt-tone",
+      "title": "Create a single-page Valentine’s gift website that the user can share as a present for their wife, with English user-facing copy and a romantic, heartfelt tone.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-coherent-visual-theme-for-the-site-colors-typography-spacing-and-components-with-an-elegant-romantic-style-using-warm-tones-e-g-rose-cream-gold-and-consistent-styling-across-all-sections-avoid-blue-purple",
+      "title": "Implement a coherent visual theme for the site (colors, typography, spacing, and components) with an elegant romantic style using warm tones (e.g., rose/cream/gold) and consistent styling across all sections (avoid blue/purple).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-following-sections-to-the-single-page-website-with-smooth-in-page-navigation-1-hero-section-with-a-valentine-headline-and-short-dedication-2-love-letter-section-multi-paragraph-3-reasons-i-love-you-list-4-our-story-timeline-3-6-milestones-5-photo-gallery-section-with-6-placeholder-image-slots-and-captions-6-closing-section-with-a-signature-line-and-call-to-action-button-e-g-open-your-surprise",
+      "title": "Add the following sections to the single-page website with smooth in-page navigation: (1) Hero section with a Valentine headline and short dedication, (2) “Love Letter” section (multi-paragraph), (3) “Reasons I Love You” list, (4) “Our Story” timeline (3–6 milestones), (5) Photo gallery section with 6 placeholder image slots and captions, (6) Closing section with a signature line and call-to-action button (e.g., “Open Your Surprise”).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-simple-personalization-ui-that-lets-the-user-edit-key-content-fields-e-g-wife-s-name-sender-name-valentine-year-date-love-letter-text-reasons-list-items-and-timeline-entries-and-persist-changes-locally-in-the-browser-e-g-localstorage",
+      "title": "Provide a simple personalization UI that lets the user edit key content fields (e.g., wife’s name, sender name, Valentine year/date, love letter text, reasons list items, and timeline entries) and persist changes locally in the browser (e.g., localStorage).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-tasteful-lightweight-micro-interactions-suitable-for-a-valentine-gift-page-subtle-fade-slide-in-section-transitions-on-scroll-and-a-small-celebratory-heart-confetti-animation-when-the-final-call-to-action-is-clicked-with-a-setting-to-disable-animations-for-accessibility",
+      "title": "Add tasteful lightweight micro-interactions suitable for a Valentine gift page: subtle fade/slide-in section transitions on scroll, and a small celebratory heart/confetti animation when the final call-to-action is clicked (with a setting to disable animations for accessibility).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-static-image-assets-to-the-frontend-and-render-them-in-the-ui-from-the-static-assets-directory-no-backend-image-serving",
+      "title": "Add required static image assets to the frontend and render them in the UI from the static assets directory (no backend image serving).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-support-for-user-provided-gallery-photos-so-the-valentine-page-photo-gallery-can-be-populated-with-a-few-personal-images-up-to-6-without-requiring-any-backend-storage",
+      "title": "Add support for user-provided gallery photos so the Valentine page photo gallery can be populated with a few personal images (up to 6), without requiring any backend storage.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-the-personalize-dialog-ui-to-let-the-user-add-replace-remove-up-to-6-photos-for-the-gallery-using-a-local-file-picker-and-persist-the-selected-photos-locally-in-the-browser",
+      "title": "Extend the Personalize dialog UI to let the user add/replace/remove up to 6 photos for the gallery using a local file picker, and persist the selected photos locally in the browser.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-gallery-section-to-render-user-provided-photos-when-available-and-fall-back-to-the-existing-static-placeholder-images-when-not",
+      "title": "Update the Gallery section to render user-provided photos when available and fall back to the existing static placeholder images when not.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-handle-personalization-storage-versioning-compatibility-so-existing-users-with-saved-personalization-data-do-not-experience-runtime-errors-after-adding-the-new-gallery-photo-fields",
+      "title": "Handle personalization storage versioning/compatibility so existing users with saved personalization data do not experience runtime errors after adding the new gallery photo fields.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-user-uploaded-gallery-photos-appear-on-the-valentine-page-gallery-immediately-after-upload-and-persist-correctly-across-refreshes",
+      "title": "Ensure user-uploaded gallery photos appear on the Valentine page gallery immediately after upload and persist correctly across refreshes.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-personalization-dialog-state-synchronization-so-the-photos-tab-edits-uploads-removals-are-applied-to-the-saved-personalization-state-reliably-and-the-dialog-always-reflects-the-current-saved-content-when-opened",
+      "title": "Fix personalization dialog state synchronization so the Photos tab edits (uploads/removals) are applied to the saved personalization state reliably, and the dialog always reflects the current saved content when opened.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-user-facing-error-handling-when-photo-persistence-fails-e-g-localstorage-quota-exceeded-and-prevent-showing-a-success-message-when-persistence-fails",
+      "title": "Add user-facing error handling when photo persistence fails (e.g., localStorage quota exceeded), and prevent showing a success message when persistence fails.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-client-side-image-size-reduction-for-uploaded-gallery-photos-before-storing-them-locally-to-improve-reliability-of-persistence-in-localstorage",
+      "title": "Implement client-side image size reduction for uploaded gallery photos before storing them locally to improve reliability of persistence in localStorage.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a Valentine’s gift website to gift the user’s wife",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Allow adding a few personal photos to the site (populate the photo gallery with user-provided images)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Valentine’s gift website for user’s wife",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

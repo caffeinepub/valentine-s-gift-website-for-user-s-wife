@@ -1,0 +1,83 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-ensure-user-uploaded-gallery-photos-appear-on-the-valentine-page-gallery-immediately-after-upload-and-persist-correctly-across-refreshes",
+      "featureTitle": "Ensure user-uploaded gallery photos appear on the Valentine page gallery immediately after upload and persist correctly across refreshes.",
+      "files": [
+        "frontend/src/components/valentine/ValentinePage.tsx",
+        "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-personalization-dialog-state-synchronization-so-the-photos-tab-edits-uploads-removals-are-applied-to-the-saved-personalization-state-reliably-and-the-dialog-always-reflects-the-current-saved-content-when-opened",
+      "featureTitle": "Fix personalization dialog state synchronization so the Photos tab edits (uploads/removals) are applied to the saved personalization state reliably, and the dialog always reflects the current saved content when opened.",
+      "files": [
+        "frontend/src/components/valentine/ValentinePage.tsx",
+        "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+        "frontend/src/components/valentine/personalization/usePersonalization.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-user-facing-error-handling-when-photo-persistence-fails-e-g-localstorage-quota-exceeded-and-prevent-showing-a-success-message-when-persistence-fails",
+      "featureTitle": "Add user-facing error handling when photo persistence fails (e.g., localStorage quota exceeded), and prevent showing a success message when persistence fails.",
+      "files": [
+        "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+        "frontend/src/components/valentine/personalization/usePersonalization.ts",
+        "frontend/src/hooks/useLocalStorageState.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-client-side-image-size-reduction-for-uploaded-gallery-photos-before-storing-them-locally-to-improve-reliability-of-persistence-in-localstorage",
+      "featureTitle": "Implement client-side image size reduction for uploaded gallery photos before storing them locally to improve reliability of persistence in localStorage.",
+      "files": [
+        "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+        "frontend/src/utils/imageResize.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

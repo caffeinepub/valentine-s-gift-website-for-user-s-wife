@@ -1,0 +1,101 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix gallery photo upload display, dialog sync, persistence errors, and client-side image compression",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "summary": "Make uploaded gallery photos show immediately in the Valentine page gallery and persist across refreshes.",
+      "acceptanceCriteria": [
+        "After selecting an image file for any of the 6 gallery slots, the Gallery section renders that image (not the placeholder) without requiring a full page reload.",
+        "After saving and refreshing the page, previously uploaded photos still render in the Gallery section.",
+        "If a photo is removed, the Gallery section returns to showing the placeholder image for that slot after save and after refresh."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Add a draft personalization state used while the Personalize dialog is open so GallerySection (and other sections) live-preview photo uploads/removals immediately; keep saved content as the source of truth when the dialog is closed."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "operation": "modify",
+          "description": "Update the dialog to edit a passed-in draft personalization object (instead of maintaining an isolated stale local copy), and to update the draft galleryPhotos immediately on upload/remove so the page gallery reflects changes without reload."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Synchronize Personalize dialog state with the latest saved personalization content; ensure Reset and Save reliably update both dialog and page.",
+      "acceptanceCriteria": [
+        "Opening the Personalize dialog always initializes the form state from the latest saved personalization content (including galleryPhotos), not stale values from a prior open.",
+        "Using “Reset to Default” resets the dialog fields and the Valentine page content to defaults (including clearing any uploaded gallery photos).",
+        "Saving changes updates the Valentine page content immediately after closing the dialog."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Initialize the dialog draft state from the latest saved personalization content each time the dialog opens; on dialog close without saving, discard the draft so reopening always reflects saved content."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "operation": "modify",
+          "description": "Refactor the dialog to receive draft content + setters and explicit handlers for Save/Reset/Cancel; wire Reset to update both the saved personalization and the current draft so the dialog and page clear galleryPhotos immediately."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/usePersonalization.ts",
+          "operation": "modify",
+          "description": "Adjust the hook API to support replacing content (save full content) and resetting to default in a way that can report persistence success/failure to the caller, enabling reliable Save/Reset flows."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Add user-facing error handling for failures saving personalization (e.g., localStorage quota), and suppress success UI when persistence fails.",
+      "acceptanceCriteria": [
+        "If saving personalization content to localStorage fails, the UI shows an English error toast/message indicating the save failed and the user may need to use smaller images or remove some photos.",
+        "The UI does not show a success toast for saving/uploading if the underlying persistence fails.",
+        "Console-only errors are not the only feedback path for save failures; an in-app message is shown."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useLocalStorageState.ts",
+          "operation": "modify",
+          "description": "Change persistence to provide an explicit success/failure signal when writing to localStorage (e.g., return a boolean/Result-like value from the setter or expose a lastSaveError state) instead of only console logging; keep versioning behavior intact."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/usePersonalization.ts",
+          "operation": "modify",
+          "description": "Propagate localStorage save failures from useLocalStorageState back to personalization callers (save/update/reset), so UI flows can show an error message and avoid success states when persistence fails."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "operation": "modify",
+          "description": "Use the persistence success/failure signal on Save and Reset: show toast.error with clear guidance when saving fails (quota/size), and only show toast.success + close the dialog when persistence succeeds; avoid success toasts for photo upload/remove if persistence is configured to auto-save those changes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Resize/compress uploaded gallery photos client-side before storing to improve localStorage reliability.",
+      "acceptanceCriteria": [
+        "Uploaded photos are resized/compressed on the client before being stored in personalization data.",
+        "With typical smartphone photos, uploading 1–6 images succeeds without localStorage errors in a normal browser session.",
+        "The stored images still display clearly in the gallery at the existing gallery card size."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/imageResize.ts",
+          "operation": "create",
+          "description": "Add a client-side image processing utility that loads an uploaded image, resizes it to a reasonable max dimension for the existing gallery card size, and compresses it (e.g., JPEG/WebP quality setting) returning a data URL suitable for localStorage."
+        },
+        {
+          "path": "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "operation": "modify",
+          "description": "Update photo upload handling to run images through the resize/compress utility before updating draft galleryPhotos (and before any persistence), and handle failures gracefully with an in-app error message."
+        }
+      ]
+    }
+  ]
+}

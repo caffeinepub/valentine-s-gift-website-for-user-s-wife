@@ -1,0 +1,87 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T10:24:56.744Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-11",
+        "summary": "Ensure user-uploaded gallery photos appear on the Valentine page gallery immediately after upload and persist correctly across refreshes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/valentine/ValentinePage.tsx",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/valentine/ValentinePage.tsx",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Fix personalization dialog state synchronization so the Photos tab edits (uploads/removals) are applied to the saved personalization state reliably, and the dialog always reflects the current saved content when opened.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/valentine/ValentinePage.tsx",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "frontend/src/components/valentine/personalization/usePersonalization.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/valentine/ValentinePage.tsx",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+          "frontend/src/components/valentine/personalization/usePersonalization.ts"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add user-facing error handling when photo persistence fails (e.g., localStorage quota exceeded), and prevent showing a success message when persistence fails.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useLocalStorageState.ts",
+          "frontend/src/components/valentine/personalization/usePersonalization.ts",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useLocalStorageState.ts",
+          "frontend/src/components/valentine/personalization/usePersonalization.ts",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Implement client-side image size reduction for uploaded gallery photos before storing them locally to improve reliability of persistence in localStorage.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/imageResize.ts",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/imageResize.ts",
+          "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/valentine/ValentinePage.tsx",
+    "frontend/src/components/valentine/animation/useMotionSettings.ts",
+    "frontend/src/components/valentine/personalization/PersonalizeDialog.tsx",
+    "frontend/src/components/valentine/personalization/usePersonalization.ts",
+    "frontend/src/hooks/useLocalStorageState.ts",
+    "frontend/src/utils/imageResize.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

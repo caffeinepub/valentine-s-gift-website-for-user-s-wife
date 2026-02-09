@@ -1,0 +1,93 @@
+{
+  "kind": "build_request",
+  "title": "Fix uploaded gallery photos not displaying after upload",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "text": "Ensure user-uploaded gallery photos appear on the Valentine page gallery immediately after upload and persist correctly across refreshes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "I need to view photos kn tbe website but it is not showing after I upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After selecting an image file for any of the 6 gallery slots, the Gallery section renders that image (not the placeholder) without requiring a full page reload.",
+        "After saving and refreshing the page, previously uploaded photos still render in the Gallery section.",
+        "If a photo is removed, the Gallery section returns to showing the placeholder image for that slot after save and after refresh."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Fix personalization dialog state synchronization so the Photos tab edits (uploads/removals) are applied to the saved personalization state reliably, and the dialog always reflects the current saved content when opened.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "I need to view photos kn tbe website but it is not showing after I upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Opening the Personalize dialog always initializes the form state from the latest saved personalization content (including galleryPhotos), not stale values from a prior open.",
+        "Using “Reset to Default” resets the dialog fields and the Valentine page content to defaults (including clearing any uploaded gallery photos).",
+        "Saving changes updates the Valentine page content immediately after closing the dialog."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Add user-facing error handling when photo persistence fails (e.g., localStorage quota exceeded), and prevent showing a success message when persistence fails.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "I need to view photos kn tbe website but it is not showing after I upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "If saving personalization content to localStorage fails, the UI shows an English error toast/message indicating the save failed and the user may need to use smaller images or remove some photos.",
+        "The UI does not show a success toast for saving/uploading if the underlying persistence fails.",
+        "Console-only errors are not the only feedback path for save failures; an in-app message is shown."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Implement client-side image size reduction for uploaded gallery photos before storing them locally to improve reliability of persistence in localStorage.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "I need to view photos kn tbe website but it is not showing after I upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Uploaded photos are resized/compressed on the client before being stored in personalization data.",
+        "With typical smartphone photos, uploading 1–6 images succeeds without localStorage errors in a normal browser session.",
+        "The stored images still display clearly in the gallery at the existing gallery card size."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (Shadcn UI components are read-only).",
+    "Do not modify any frontend paths listed as immutable in SYSTEM_CONTEXT.",
+    "Do not add backend storage for images; gallery photos must remain browser-local."
+  ],
+  "nonGoals": [
+    "Adding a backend canister API for photo upload or serving images from the backend.",
+    "Adding more than 6 gallery photo slots.",
+    "Integrating third-party image hosting or cloud storage."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
